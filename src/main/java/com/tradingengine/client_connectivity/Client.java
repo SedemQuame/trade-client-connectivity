@@ -3,6 +3,8 @@ package com.tradingengine.client_connectivity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +17,7 @@ public class Client {
     private String password;
     private String cardDetails;
     private String bankBalance;
+//    private List<> portfolioList= new ArrayList<>();
 
     //    Constructors
     public Client() {
@@ -49,6 +52,11 @@ public class Client {
     }
 
     //    Setters
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
