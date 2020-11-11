@@ -22,6 +22,11 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             this.assembler = assembler;
         }
 
+        @GetMapping("/")
+        public String welcome(){
+            return "Client connectivity";
+        }
+
         @GetMapping("/clients")
         public CollectionModel<EntityModel<Client>> all(){
             List<EntityModel<Client>> clients = clientList.findAll().stream()
