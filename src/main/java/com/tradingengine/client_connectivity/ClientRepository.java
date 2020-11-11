@@ -22,7 +22,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             this.assembler = assembler;
         }
 
-        @GetMapping("/getAllUsers")
+        @GetMapping("/clients")
         public CollectionModel<EntityModel<Client>> all(){
             List<EntityModel<Client>> clients = clientList.findAll().stream()
                     .map(assembler::toModel)
@@ -31,12 +31,12 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
                     linkTo(methodOn(ClientController.class).all()).withSelfRel());
         }
 
-        @PostMapping("/employees")
-        Client newEmployee(@RequestBody Client newClient){
+        @PostMapping("/client")
+        Client newClient(@RequestBody Client newClient){
             return clientList.save(newClient);
         }
 
-        @GetMapping("/getUser/{id}")
+        @GetMapping("/client/{id}")
         EntityModel<Client> one(@PathVariable Long id) throws ClientNotFoundException {
             Client client = clientList.findById(id)
                     .orElseThrow(() -> new ClientNotFoundException(id));
