@@ -1,5 +1,7 @@
-package com.tradingengine.client_connectivity;
+package com.tradingengine.client_connectivity.ops;
 
+import com.tradingengine.client_connectivity.client.Client;
+import com.tradingengine.client_connectivity.client.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,8 +17,8 @@ class LoadDatabase {
     CommandLineRunner initDatabase(ClientRepository repository) {
 
         return args -> {
-            log.info("Preloading " + repository.save(new Client("Bilbo", "Baggins", "burglar", "")));
-            log.info("Preloading " + repository.save(new Client("Frodo", "Baggins", "thief", "")));
+            log.info("Preloading " + repository.save(new Client("Bilbo", "Baggins", "bilbo@yahoo.com","burglar", "", "")));
+            log.info("Preloading " + repository.save(new Client("Frodo", "Baggins", "frodo@hotmail.com","thief", "", "")));
         };
     }
 }

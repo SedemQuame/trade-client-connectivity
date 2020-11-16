@@ -1,5 +1,8 @@
-package com.tradingengine.client_connectivity;
+package com.tradingengine.client_connectivity.ops;
 
+import com.tradingengine.client_connectivity.client.Client;
+import com.tradingengine.client_connectivity.client.ClientNotFoundException;
+import com.tradingengine.client_connectivity.client.ClientRepository;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
