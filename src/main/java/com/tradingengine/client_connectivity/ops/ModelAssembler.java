@@ -13,11 +13,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Component
 public class ModelAssembler implements RepresentationModelAssembler<Client, EntityModel<Client>> {
     @Override
-    public EntityModel<Client> toModel(Client employee) {
+    public EntityModel<Client> toModel(Client client) {
 
         try {
-            return EntityModel.of(employee, //
-                    linkTo(methodOn(ClientRepository.ClientController.class).one(employee.getId())).withSelfRel(),
+            return EntityModel.of(client, //
+                    linkTo(methodOn(ClientRepository.ClientController.class).one(client.getId())).withSelfRel(),
                     linkTo(methodOn(ClientRepository.ClientController.class).all()).withRel("client"));
         } catch (ClientNotFoundException e) {
             e.printStackTrace();
