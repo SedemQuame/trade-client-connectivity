@@ -44,7 +44,7 @@ public class OrderService {
         String endPoint = "http://localhost:8080/order/create";
         String endPoint1 = "http://localhost:8280/orders/";
 
-        if (System.getenv("online") != null) {
+        if (System.getenv("online").equals("true")) {
             endPoint = LINK_TO_REPORTING_SERVICE + "/order/create";
             endPoint1 = LINK_TO_ORDER_VALIDATION_SERVICE + "/orders/" + order.getOrderId();
         }
