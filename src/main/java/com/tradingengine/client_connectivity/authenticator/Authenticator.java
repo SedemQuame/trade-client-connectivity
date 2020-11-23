@@ -3,6 +3,7 @@ package com.tradingengine.client_connectivity.authenticator;
 import com.tradingengine.client_connectivity.client.Client;
 import com.tradingengine.client_connectivity.client.ClientNotFoundException;
 import com.tradingengine.client_connectivity.client.ClientRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ public class Authenticator {
     }
 
     @GetMapping("/client/authentication")
+    @CrossOrigin
     String authentication(@RequestParam String email, @RequestParam String password){
 //        find client with the user's name
 //        create query for find clients in client list using the client email address

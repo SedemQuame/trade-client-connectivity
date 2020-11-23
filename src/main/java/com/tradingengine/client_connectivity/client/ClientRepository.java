@@ -1,6 +1,6 @@
 package com.tradingengine.client_connectivity.client;
 
-import com.tradingengine.client_connectivity.client.portfolio.Portfolio;
+import com.tradingengine.client_connectivity.portfolio.Portfolio;
 import com.tradingengine.client_connectivity.ops.ModelAssembler;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.hateoas.CollectionModel;
@@ -18,6 +18,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Client findByEmail(String email) throws ClientNotFoundException;
 
     @RestController
+    @CrossOrigin
     class ClientController {
         private final ClientRepository clientList;
         private final ModelAssembler assembler;
@@ -28,7 +29,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
 //        test client route
-        @GetMapping("/clients")
+        @GetMapping("/")
         public String welcome() {
             return "Client Connectivity Service";
         }
@@ -52,7 +53,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         @PostMapping("/client/{clientId}/close/portfolio/{portfolioId}")
         public ModelAndView closePortfolioById(@PathVariable Long clientId, @PathVariable Long portfolioId){
             clientList.findById(clientId).map(client -> {
-                client.getUserPortfolio().remove(portfolioId);
+                List<Portfolio> portfolios = client.getUserPortfolio();
+                client.setUserPortfolio(portfolios.stream().filter(portfolio -> portfolioId.equals(portfolio.getId()))
+                        .collect(Collectors.toList()));
                 return clientList.save(client);
             });
             return new ModelAndView("redirect:/client/get/" + clientId);

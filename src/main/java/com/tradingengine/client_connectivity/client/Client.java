@@ -1,13 +1,11 @@
 package com.tradingengine.client_connectivity.client;
 
-import com.tradingengine.client_connectivity.client.portfolio.Portfolio;
+import com.tradingengine.client_connectivity.portfolio.Portfolio;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @Entity
