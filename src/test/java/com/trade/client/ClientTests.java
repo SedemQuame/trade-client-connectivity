@@ -1,10 +1,10 @@
-package com.tradingengine.client_connectivity;
+package com.trade.client;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClientConnectivityApplicationTests {
+class ClientTests {
 
 	@Test
 	void contextLoads() {

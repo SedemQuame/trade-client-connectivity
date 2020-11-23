@@ -1,11 +1,11 @@
-package com.tradingengine.client_connectivity;
+package com.trade.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ClientConnectivityApplication {
+public class Client {
 	public static void main(String... args) {
-		SpringApplication.run(ClientConnectivityApplication.class, args);
+		SpringApplication.run(Client.class, args);
 	}
 }

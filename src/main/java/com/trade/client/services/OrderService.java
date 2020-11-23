@@ -1,5 +1,6 @@
-package com.tradingengine.client_connectivity.order;
+package com.trade.client.services;
 
+import com.trade.client.models.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;

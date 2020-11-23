@@ -1,4 +1,5 @@
-package com.tradingengine.client_connectivity.portfolio;
+package com.trade.client.repository;
+import com.trade.client.models.Portfolio;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

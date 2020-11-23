@@ -1,7 +1,7 @@
-package com.tradingengine.client_connectivity.ops;
+package com.trade.client.ops;
 
-import com.tradingengine.client_connectivity.client.Client;
-import com.tradingengine.client_connectivity.client.ClientRepository;
+import com.trade.client.models.Client;
+import com.trade.client.repository.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

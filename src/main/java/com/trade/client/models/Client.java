@@ -1,6 +1,5 @@
-package com.tradingengine.client_connectivity.client;
+package com.trade.client.models;
 
-import com.tradingengine.client_connectivity.portfolio.Portfolio;
 import lombok.Data;
 
 import javax.persistence.*;

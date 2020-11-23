@@ -1,4 +1,4 @@
-package com.tradingengine.client_connectivity.order;
+package com.trade.client.models;
 
 public class Order {
     private String product;

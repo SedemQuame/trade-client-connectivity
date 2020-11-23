@@ -1,10 +1,11 @@
-package com.tradingengine.client_connectivity.ops;
+package com.trade.client.ops;
 
-import com.tradingengine.client_connectivity.client.Client;
-import com.tradingengine.client_connectivity.client.ClientNotFoundException;
-import com.tradingengine.client_connectivity.client.ClientRepository;
+import com.trade.client.models.Client;
+import com.trade.client.exceptions.ClientNotFoundException;
+import com.trade.client.repository.ClientRepository;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -17,7 +18,7 @@ public class ModelAssembler implements RepresentationModelAssembler<Client, Enti
 
         try {
             return EntityModel.of(client, //
-                    linkTo(methodOn(ClientRepository.ClientController.class).one(client.getId())).withSelfRel(),
+                    WebMvcLinkBuilder.linkTo(methodOn(ClientRepository.ClientController.class).one(client.getId())).withSelfRel(),
                     linkTo(methodOn(ClientRepository.ClientController.class).all()).withRel("client"));
         } catch (ClientNotFoundException e) {
             e.printStackTrace();

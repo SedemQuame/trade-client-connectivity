@@ -1,8 +1,8 @@
-package com.tradingengine.client_connectivity.authenticator;
+package com.trade.client.services;
 
-import com.tradingengine.client_connectivity.client.Client;
-import com.tradingengine.client_connectivity.client.ClientNotFoundException;
-import com.tradingengine.client_connectivity.client.ClientRepository;
+import com.trade.client.exceptions.ClientNotFoundException;
+import com.trade.client.repository.ClientRepository;
+import com.trade.client.models.Client;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,4 +1,4 @@
-package com.tradingengine.client_connectivity.portfolio;
+package com.trade.client.models;
 
 import lombok.Data;
 import javax.persistence.Embeddable;
