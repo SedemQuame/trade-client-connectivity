@@ -1,4 +1,4 @@
-package com.trade.client.exceptions;
+package com.trade.exceptions;
 
 public class ClientNotFoundException extends Exception{
     public ClientNotFoundException(Long id) {

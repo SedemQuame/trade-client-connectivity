@@ -1,10 +1,10 @@
-package com.trade.client.repository;
+package com.trade.repository;
 
-import com.trade.client.exceptions.ClientNotFoundException;
-import com.trade.client.models.Credentials;
-import com.trade.client.models.Client;
-import com.trade.client.models.Portfolio;
-import com.trade.client.ops.ModelAssembler;
+import com.trade.exceptions.ClientNotFoundException;
+import com.trade.models.Credentials;
+import com.trade.models.Client;
+import com.trade.models.Portfolio;
+import com.trade.ops.ModelAssembler;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;

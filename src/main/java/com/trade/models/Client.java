@@ -1,4 +1,4 @@
-package com.trade.client.models;
+package com.trade.models;
 
 import lombok.Data;
 

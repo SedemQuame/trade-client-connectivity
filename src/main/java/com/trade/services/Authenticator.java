@@ -1,14 +1,15 @@
-package com.trade.client.services;
+package com.trade.services;
 
-import com.trade.client.exceptions.ClientNotFoundException;
-import com.trade.client.repository.ClientRepository;
-import com.trade.client.models.Client;
+import com.trade.exceptions.ClientNotFoundException;
+import com.trade.repository.ClientRepository;
+import com.trade.models.Client;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class Authenticator {
 //    @Autowired
     private final ClientRepository clientList;

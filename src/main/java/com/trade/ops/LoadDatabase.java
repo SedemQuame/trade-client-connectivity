@@ -1,7 +1,7 @@
-package com.trade.client.ops;
+package com.trade.ops;
 
-import com.trade.client.models.Client;
-import com.trade.client.repository.ClientRepository;
+import com.trade.models.Client;
+import com.trade.repository.ClientRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

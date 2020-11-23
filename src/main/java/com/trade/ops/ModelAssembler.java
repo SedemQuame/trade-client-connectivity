@@ -1,8 +1,8 @@
-package com.trade.client.ops;
+package com.trade.ops;
 
-import com.trade.client.models.Client;
-import com.trade.client.exceptions.ClientNotFoundException;
-import com.trade.client.repository.ClientRepository;
+import com.trade.models.Client;
+import com.trade.exceptions.ClientNotFoundException;
+import com.trade.repository.ClientRepository;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
