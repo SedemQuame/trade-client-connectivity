@@ -17,25 +17,10 @@ import java.net.URISyntaxException;
 @CrossOrigin
 public class OrderService {
     private static final int PORT = 8090;
-    private static Jedis jedis = null;
     private final static String ORDER_TO_REPORTING_SERVICE_CHANNEL = "C2";
-    @PostMapping("/submitOrder")
-    public void submitOrders(@RequestBody Order order) throws JsonParseException {
-        // TODO: 11/23/20 Send order to the order validation service using SOAP.
-
-
-        // TODO: 11/23/20 Send order to be created by the reporting service.
-        RestTemplate restTemplate = new RestTemplate();
-        String endPoint = "http://localhost:8080/order/create"; // TODO: 11/23/20 Change to the online address of the reporting service.
-        restTemplate.postForObject(endPoint, order, Order.class);
-
-//        // TODO: 11/23/20 Send rest request to the order validator, if soap isn't implemented.
-        RestTemplate restTemplate1 = new RestTemplate();
-        String endPoint1 = "http://localhost:8280/orders/" + order.getOrderId(); // TODO: 11/23/20 Change to the online address of the order validation service.
-        restTemplate1.postForObject(endPoint1, order, Order.class);
-
-        return;
-    }
+    private final static String LINK_TO_REPORTING_SERVICE = "https://trade-reporting-service.herokuapp.com/";
+    private final static String LINK_TO_ORDER_VALIDATION_SERVICE = "https://trade-order-validator.herokuapp.com/";
+    private static Jedis jedis = null;
 
     private static Jedis getConnection() throws URISyntaxException {
         URI redisURI = null;
@@ -46,4 +31,33 @@ public class OrderService {
         }
         return (new Jedis(redisURI));
     }
+
+    @PostMapping("/submitOrder")
+    public void submitOrders(@RequestBody Order order) throws JsonParseException {
+        // TODO: 11/23/20 Send order to the order validation service using SOAP.
+
+
+        // TODO: 11/23/20 Send order to be created by the reporting service.
+        RestTemplate restTemplate = new RestTemplate();
+
+        // TODO: 11/23/20 Change to the online address of the reporting service. => DONE
+        String endPoint = "http://localhost:8080/order/create";
+        String endPoint1 = "http://localhost:8280/orders/";
+
+        if (System.getenv("online") != null) {
+            endPoint = LINK_TO_REPORTING_SERVICE + "/order/create";
+            endPoint1 = LINK_TO_ORDER_VALIDATION_SERVICE + "/orders/" + order.getOrderId();
+        }
+
+        restTemplate.postForObject(endPoint, order, Order.class);
+
+//        // TODO: 11/23/20 Send rest request to the order validator, if soap isn't implemented.
+        RestTemplate restTemplate1 = new RestTemplate();
+
+        // TODO: 11/23/20 Change to the online address of the order validation service. => DONE
+        restTemplate1.postForObject(endPoint1, order, Order.class);
+
+        return;
+    }
 }
+
