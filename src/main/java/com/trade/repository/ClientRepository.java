@@ -38,7 +38,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
         @PostMapping("/client/login")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public ModelAndView login(ModelMap map, @RequestBody Credentials clientToAuthenticate) {
             map.addAttribute("email", clientToAuthenticate.getEmail());
             map.addAttribute("password", clientToAuthenticate.getPassword());
@@ -46,7 +46,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
         @PostMapping("/client/{id}/create/portfolio")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public ModelAndView createPortfolioByUserId(@PathVariable Long id, @RequestBody Portfolio portfolio){
             clientList.findById(id).map(client -> {
                 client.addPortfolio(portfolio);
@@ -56,7 +56,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
         @PostMapping("/client/{clientId}/close/portfolio/{portfolioId}")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public ModelAndView closePortfolioById(@PathVariable Long clientId, @PathVariable Long portfolioId){
             clientList.findById(clientId).map(client -> {
                 List<Portfolio> portfolios = client.getUserPortfolio();
@@ -69,14 +69,14 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //        create new client accounts
         @PostMapping("/client/create")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         Client newClient(@RequestBody Client newClient) {
             return clientList.save(newClient);
         }
 
 //        return all registered users in the system
         @GetMapping("/clients/all")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public CollectionModel<EntityModel<Client>> all() {
             List<EntityModel<Client>> clients = clientList.findAll().stream()
                     .map(assembler::toModel)

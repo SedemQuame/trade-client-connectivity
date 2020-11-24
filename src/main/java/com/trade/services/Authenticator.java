@@ -1,6 +1,7 @@
 package com.trade.services;
 
 import com.trade.exceptions.ClientNotFoundException;
+import com.trade.models.AuthenticatedResponse;
 import com.trade.repository.ClientRepository;
 import com.trade.models.Client;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,19 +21,26 @@ public class Authenticator {
 
     @GetMapping("/client/authentication")
     @CrossOrigin
-    String authentication(@RequestParam String email, @RequestParam String password){
+    AuthenticatedResponse authentication(@RequestParam String email, @RequestParam String password){
 //        find client with the user's name
 //        create query for find clients in client list using the client email address
+        AuthenticatedResponse response = null;
         try {
             Client clientToAuthenticate = clientList.findByEmail(email);
-            if((clientToAuthenticate.getEmail()).equals(email) && (clientToAuthenticate.getPassword()).equals(password))
-                return "Passed authentication";
-            else
-                return "Failed authentication";
+            if((clientToAuthenticate.getEmail()).equals(email) && (clientToAuthenticate.getPassword()).equals(password)){
+                response = new AuthenticatedResponse(String.valueOf(clientToAuthenticate.getId()), "authenticated");
+                return response;
+            }
+            else{
+                response = new AuthenticatedResponse(null, "failed");
+                return response;
+            }
         }catch(ClientNotFoundException e){
-            return "Failed authentication";
+            response = new AuthenticatedResponse(null, "failed");
+            return response;
         }catch (NullPointerException e){
-            return "Failed authentication";
+            response = new AuthenticatedResponse(null, "failed");
+            return response;
         }
     }
 }
