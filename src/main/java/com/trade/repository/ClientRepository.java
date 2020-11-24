@@ -21,7 +21,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Client findByEmail(String email) throws ClientNotFoundException;
 
     @RestController
-    @CrossOrigin
     class ClientController {
         private final ClientRepository clientList;
         private final ModelAssembler assembler;
@@ -33,11 +32,13 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //        test client route
         @GetMapping("/")
+        @CrossOrigin(origins = "http://localhost:4200")
         public String welcome() {
             return "Client Connectivity Service";
         }
 
         @PostMapping("/client/login")
+        @CrossOrigin(origins = "http://localhost:4200")
         public ModelAndView login(ModelMap map, @RequestBody Credentials clientToAuthenticate) {
             map.addAttribute("email", clientToAuthenticate.getEmail());
             map.addAttribute("password", clientToAuthenticate.getPassword());
@@ -45,6 +46,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
         @PostMapping("/client/{id}/create/portfolio")
+        @CrossOrigin(origins = "http://localhost:4200")
         public ModelAndView createPortfolioByUserId(@PathVariable Long id, @RequestBody Portfolio portfolio){
             clientList.findById(id).map(client -> {
                 client.addPortfolio(portfolio);
@@ -54,6 +56,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
         }
 
         @PostMapping("/client/{clientId}/close/portfolio/{portfolioId}")
+        @CrossOrigin(origins = "http://localhost:4200")
         public ModelAndView closePortfolioById(@PathVariable Long clientId, @PathVariable Long portfolioId){
             clientList.findById(clientId).map(client -> {
                 List<Portfolio> portfolios = client.getUserPortfolio();
@@ -66,12 +69,14 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //        create new client accounts
         @PostMapping("/client/create")
+        @CrossOrigin(origins = "http://localhost:4200")
         Client newClient(@RequestBody Client newClient) {
             return clientList.save(newClient);
         }
 
 //        return all registered users in the system
         @GetMapping("/clients/all")
+        @CrossOrigin(origins = "http://localhost:4200")
         public CollectionModel<EntityModel<Client>> all() {
             List<EntityModel<Client>> clients = clientList.findAll().stream()
                     .map(assembler::toModel)
@@ -82,6 +87,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //       filter clients in database by id
         @GetMapping("/client/get/{id}")
+        @CrossOrigin(origins = "http://localhost:4200")
         public EntityModel<Client> one(@PathVariable Long id) throws ClientNotFoundException {
             Client client = clientList.findById(id)
                     .orElseThrow(() -> new ClientNotFoundException(id));
@@ -92,6 +98,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //          update client documents by id
         @PutMapping("/client/update/{id}")
+        @CrossOrigin(origins = "http://localhost:4200")
         Client replaceEmployee(@RequestBody Client newClient, @PathVariable Long id) {
             return clientList.findById(id)
                 .map(client -> {
