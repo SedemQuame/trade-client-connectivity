@@ -37,7 +37,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
             return "Client Connectivity Service";
         }
 
-        @GetMapping("/client/login")
+        @PostMapping("/client/login")
         public ModelAndView login(ModelMap map, @RequestBody Credentials clientToAuthenticate) {
             map.addAttribute("email", clientToAuthenticate.getEmail());
             map.addAttribute("password", clientToAuthenticate.getPassword());

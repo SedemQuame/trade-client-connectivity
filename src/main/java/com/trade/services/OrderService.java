@@ -44,9 +44,11 @@ public class OrderService {
         String endPoint = "http://localhost:8080/order/create";
         String endPoint1 = "http://localhost:8280/orders/";
 
-        if (System.getenv("online").equals("true")) {
+        if (System.getenv("online") != null) {
             endPoint = LINK_TO_REPORTING_SERVICE + "/order/create";
             endPoint1 = LINK_TO_ORDER_VALIDATION_SERVICE + "/orders/" + order.getOrderId();
+        }else{
+            endPoint1 = endPoint1 + order.getOrderId();
         }
 
         restTemplate.postForObject(endPoint, order, Order.class);
@@ -56,7 +58,6 @@ public class OrderService {
 
         // TODO: 11/23/20 Change to the online address of the order validation service. => DONE
         restTemplate1.postForObject(endPoint1, order, Order.class);
-
         return;
     }
 }
