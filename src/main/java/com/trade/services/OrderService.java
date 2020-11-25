@@ -2,6 +2,7 @@ package com.trade.services;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.trade.models.Order;
+import com.trade.models.OrderSubmissionResponse;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,12 +34,14 @@ public class OrderService {
     }
 
     @PostMapping("/submitOrder")
-    public void submitOrders(@RequestBody Order order) throws JsonParseException {
+    public OrderSubmissionResponse submitOrders(@RequestBody Order order) {
         // TODO: 11/23/20 Send order to the order validation service using SOAP.
-
 
         // TODO: 11/23/20 Send order to be created by the reporting service.
         RestTemplate restTemplate = new RestTemplate();
+
+        System.out.println("Order id: " + order.getOrderId());
+        System.out.println("User id: " + order.getUserId());
 
         // TODO: 11/23/20 Change to the online address of the reporting service. => DONE
         String endPoint = "http://localhost:8080/order/create";
@@ -58,7 +61,8 @@ public class OrderService {
 
         // TODO: 11/23/20 Change to the online address of the order validation service. => DONE
         restTemplate1.postForObject(endPoint1, order, Order.class);
-        return;
+
+        return (new OrderSubmissionResponse(order.getOrderId(), "created"));
     }
 }
 
