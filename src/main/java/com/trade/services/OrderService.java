@@ -34,6 +34,7 @@ public class OrderService {
     }
 
     @PostMapping("/submitOrder")
+    @CrossOrigin
     public OrderSubmissionResponse submitOrders(@RequestBody Order order) {
         // TODO: 11/23/20 Send order to the order validation service using SOAP.
 
