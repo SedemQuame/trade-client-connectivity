@@ -19,8 +19,8 @@ import java.net.URISyntaxException;
 public class OrderService {
     private static final int PORT = 8090;
     private final static String ORDER_TO_REPORTING_SERVICE_CHANNEL = "C2";
-    private final static String LINK_TO_REPORTING_SERVICE = "https://trade-reporting-service.herokuapp.com";
-    private final static String LINK_TO_ORDER_VALIDATION_SERVICE = "https://trade-order-validator.herokuapp.com";
+    private final static String LINK_TO_REPORTING_SERVICE = "https://trade-reporting-service.herokuapp.com/";
+    private final static String LINK_TO_ORDER_VALIDATION_SERVICE = "https://trade-order-validator.herokuapp.com/";
     private static Jedis jedis = null;
 
     private static Jedis getConnection() throws URISyntaxException {
@@ -54,7 +54,8 @@ public class OrderService {
         }else{
             endPoint1 = endPoint1 + order.getOrderId();
         }
-
+        System.out.println("End point #1: " + endPoint);
+        System.out.println("End point #2: " + endPoint1);
         restTemplate.postForObject(endPoint, order, Order.class);
 
 //        // TODO: 11/23/20 Send rest request to the order validator, if soap isn't implemented.
