@@ -36,13 +36,10 @@ public class OrderService {
     @PostMapping("/submitOrder")
     @CrossOrigin
     public OrderSubmissionResponse submitOrders(@RequestBody Order order) {
-        // TODO: 11/23/20 Send order to the order validation service using SOAP.
-
+        System.out.println(order.toString());
         // TODO: 11/23/20 Send order to be created by the reporting service.
         RestTemplate restTemplate = new RestTemplate();
 
-        System.out.println("Order id: " + order.getOrderId());
-        System.out.println("User id: " + order.getUserId());
 
         // TODO: 11/23/20 Change to the online address of the reporting service. => DONE
         String endPoint = "http://localhost:8080/order/create";
