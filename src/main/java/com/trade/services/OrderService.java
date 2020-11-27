@@ -19,8 +19,8 @@ import java.net.URISyntaxException;
 public class OrderService {
     private static final int PORT = 8090;
     private final static String ORDER_TO_REPORTING_SERVICE_CHANNEL = "C2";
-    private final static String LINK_TO_REPORTING_SERVICE = "https://trade-reporting-service.herokuapp.com/";
-    private final static String LINK_TO_ORDER_VALIDATION_SERVICE = "https://trade-order-validator.herokuapp.com/";
+    private final static String LINK_TO_REPORTING_SERVICE = "https://trade-reporting-service.herokuapp.com";
+    private final static String LINK_TO_ORDER_VALIDATION_SERVICE = "https://trade-order-validator.herokuapp.com";
     private static Jedis jedis = null;
 
     private static Jedis getConnection() throws URISyntaxException {

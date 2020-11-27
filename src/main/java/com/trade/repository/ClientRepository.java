@@ -32,7 +32,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //        test client route
         @GetMapping("/")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public String welcome() {
             return "Client Connectivity Service";
         }
@@ -87,7 +87,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //       filter clients in database by id
         @GetMapping("/client/get/{id}")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         public EntityModel<Client> one(@PathVariable Long id) throws ClientNotFoundException {
             Client client = clientList.findById(id)
                     .orElseThrow(() -> new ClientNotFoundException(id));
@@ -98,7 +98,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
 //          update client documents by id
         @PutMapping("/client/update/{id}")
-        @CrossOrigin(origins = "http://localhost:4200")
+        @CrossOrigin
         Client replaceEmployee(@RequestBody Client newClient, @PathVariable Long id) {
             return clientList.findById(id)
                 .map(client -> {
